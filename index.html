@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leonido Shorts</title>
+<meta name="description" content="Leonido Shorts – the private publishing tool behind the GTA6 Leonido YouTube channel.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bar"></div>
+<header>
+  <div class="logo">GTA6 <span>Leonido</span> Shorts</div>
+  <nav><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></nav>
+</header>
+<main>
+  <h1>Leonido Shorts</h1>
+  <p class="lead">A small, self-hosted publishing tool used by a single creator to produce and upload vertical short videos to their own YouTube channel, <a href="https://www.youtube.com/@GTA6Leonido">GTA6 Leonido</a>.</p>
+  <p><span class="yt">Uses <b>YouTube API Services</b></span></p>
+
+  <h2>What it does</h2>
+  <ol>
+    <li>Collects gameplay clips (Grand Theft Auto VI) from Kick streamers who have given the channel owner <b>written permission</b> to repost their clips.</li>
+    <li>Edits each clip into a 9:16 vertical video: the streamer's camera on top, gameplay below, a credit badge with the streamer's Kick channel, Turkish subtitles and the channel watermark.</li>
+    <li>Shows every finished video in a local review panel. The channel owner manually approves or rejects each one; nothing is published without this approval.</li>
+    <li>Uploads approved videos to the owner's own YouTube channel with the YouTube Data API (<code>videos.insert</code>), crediting the original streamer and linking to the source in the description.</li>
+  </ol>
+
+  <div class="card">
+    <b>Who can use it?</b><br>
+    Leonido Shorts is not a public service. It runs only on the channel owner's computer and is used only to manage the owner's own YouTube channel. There are no other users, accounts or sign-ups.
+  </div>
+
+  <h2>YouTube data</h2>
+  <p>The tool signs in with the channel owner's Google account via OAuth 2.0 and only requests the scopes needed to upload videos and read the owner's own channel name. See the <a href="privacy.html">Privacy Policy</a> for details and the <a href="terms.html">Terms of Service</a> for the rules of use.</p>
+</main>
+<footer>
+  Leonido Shorts · operated by the owner of the GTA6 Leonido YouTube channel ·
+  <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a> ·
+  <a href="https://github.com/Houzcetin/leonido-shorts/issues">Contact</a><br>
+  Grand Theft Auto VI is a trademark of Rockstar Games / Take-Two Interactive. This project is not affiliated with Rockstar Games, Kick or YouTube.
+</footer>
+</body>
+</html>
