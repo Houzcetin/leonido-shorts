@@ -15,7 +15,7 @@
   <h1>Privacy Policy</h1>
   <p class="lead">Last updated: 19 November 2026</p>
 
-  <p>Leonido Shorts ("the tool") is a self-hosted application used only by the owner of the GTA6 Leonido YouTube channel to upload videos to that channel. This policy explains what data the tool accesses and how it is handled.</p>
+  <p>Leonido Shorts ("the tool") is a self-hosted application used only by the owner of the GTA6 Leonido YouTube channel to upload videos to that channel and to send drafts to the owner's own TikTok account. This policy explains what data the tool accesses and how it is handled.</p>
 
   <h2>Use of YouTube API Services</h2>
   <p>The tool uses <b>YouTube API Services</b>. By using the tool, the user agrees to be bound by the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>. YouTube data is also subject to the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
@@ -25,6 +25,15 @@
     <li><b>Google / YouTube account authorization:</b> the tool asks the channel owner to sign in with Google (OAuth 2.0) and requests only these scopes: <code>youtube.upload</code> (to upload videos) and <code>youtube.readonly</code> (to read the name of the owner's own channel to confirm the right channel is connected).</li>
     <li><b>YouTube video IDs:</b> after an upload, the ID of the newly created video is saved so the owner can see which clips are already published.</li>
     <li>The tool does <b>not</b> read, collect or store data about other YouTube users, viewers, comments, subscribers or analytics.</li>
+  </ul>
+
+  <h2>TikTok</h2>
+  <p>The tool can also send approved videos to the owner's own TikTok account as drafts, using the TikTok Login Kit and Content Posting API ("upload to inbox"). The owner then reviews, captions and publishes each draft manually in the TikTok app. Use of these features is subject to the <a href="https://www.tiktok.com/legal/terms-of-service">TikTok Terms of Service</a> and the <a href="https://www.tiktok.com/legal/privacy-policy">TikTok Privacy Policy</a>.</p>
+  <ul>
+    <li><b>TikTok account authorization:</b> the owner signs in with TikTok (OAuth 2.0). Only these scopes are requested: <code>user.info.basic</code> (to show the connected account's display name) and <code>video.upload</code> (to send drafts to the owner's inbox).</li>
+    <li><b>Stored TikTok data:</b> the access/refresh token (in the local file <code>tiktok_token.json</code>) and the upload <code>publish_id</code> and status of each draft. Nothing else is collected; no data about other TikTok users, viewers, followers or analytics is read.</li>
+    <li>The <code>tiktok-callback.html</code> page on this site only displays the authorization code in the owner's browser and forwards it to the tool running on the owner's computer (127.0.0.1). It does not store or transmit it anywhere else.</li>
+    <li>Access can be revoked at any time in the TikTok app under Settings and privacy → Security → Apps and services permissions, or by deleting <code>tiktok_token.json</code>.</li>
   </ul>
 
   <h2>How data is used</h2>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow">
+<title>TikTok bağlantısı · Leonido Shorts</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  label{display:block;color:var(--muted);margin:12px 0 6px}
+  textarea{display:block;width:100%;min-height:90px;resize:vertical;background:var(--dark);color:var(--text);border:1px solid #3a2c55;border-radius:8px;padding:10px;font:14px/1.5 monospace}
+  button,.button{display:inline-block;border:0;border-radius:8px;padding:10px 16px;background:var(--pink);color:#fff;font:600 15px system-ui;cursor:pointer;text-decoration:none;margin:10px 8px 0 0}
+  .secondary{background:#3a2c55}
+  #message{white-space:pre-wrap;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<header>
+  <div class="logo">GTA6 <span>Leonido</span> Shorts</div>
+  <nav><a href="index.html">Ana sayfa</a><a href="privacy.html">Gizlilik</a><a href="terms.html">Kullanım koşulları</a></nav>
+</header>
+<main>
+  <h1>TikTok bağlantısı</h1>
+  <p class="lead" id="message" role="status">TikTok dönüş bilgileri okunuyor…</p>
+  <div class="card">
+    <label for="code">Yetki kodu / Authorization code</label>
+    <textarea id="code" readonly spellcheck="false" autocomplete="off"></textarea>
+    <button type="button" data-copy="code">Kodu kopyala</button>
+    <label for="state">Doğrulama değeri / State</label>
+    <textarea id="state" readonly spellcheck="false" autocomplete="off"></textarea>
+    <button type="button" class="secondary" data-copy="state">State'i kopyala</button>
+    <p>Panelden bağlantı başlattıysan yerel panele dön. Terminalde <code>auth-tiktok</code> çalıştırdıysan
+      kodu ve state değerini terminale yapıştır. Bu sayfayı veya kodu başkalarıyla paylaşma.</p>
+    <p lang="en">Return to the local panel, or paste the code and state into the terminal running
+      <code>auth-tiktok</code>. If the panel is closed, go back to this page to copy them.</p>
+    <a id="local" class="button" href="http://127.0.0.1:5000/tiktok/callback">Yerel panele dön / Return to panel</a>
+    <p>Yerel panele otomatik dönüş 8 saniye içinde denenecek.</p>
+  </div>
+  <noscript>Bilgileri göstermek ve yerel panele dönmek için JavaScript'i etkinleştir.</noscript>
+</main>
+<footer>Leonido Shorts · Bu sayfa bilgileri saklamaz. / This page does not store your authorization data.</footer>
+<script>
+(() => {
+  const originalQuery = window.location.search;
+  const params = new URLSearchParams(originalQuery);
+  const code = params.get('code') || '';
+  const state = params.get('state') || '';
+  const error = params.get('error') || '';
+  const description = params.get('error_description') || '';
+  document.getElementById('code').value = code;
+  document.getElementById('state').value = state;
+  document.getElementById('message').textContent = error
+    ? 'TikTok bağlantısı tamamlanamadı / Authorization failed: ' + error + (description ? ' — ' + description : '')
+    : code ? 'Yetki kodu alındı. / Authorization code received.'
+    : 'Yetki kodu bulunamadı. Bağlantıyı yeniden başlat. / No code received; start again.';
+  const local = 'http://127.0.0.1:5000/tiktok/callback' + originalQuery;
+  document.getElementById('local').href = local;
+  document.querySelectorAll('[data-copy]').forEach(button => {
+    button.addEventListener('click', async () => {
+      const field = document.getElementById(button.dataset.copy);
+      try {
+        await navigator.clipboard.writeText(field.value);
+        button.textContent = 'Kopyalandı / Copied';
+      } catch {
+        field.focus();
+        field.select();
+        button.textContent = 'Seçildi; Ctrl+C ile kopyala / Selected; press Ctrl+C';
+      }
+    });
+  });
+  if (originalQuery) window.setTimeout(() => window.location.assign(local), 8000);
+})();
+</script>
+</body>
+</html>
